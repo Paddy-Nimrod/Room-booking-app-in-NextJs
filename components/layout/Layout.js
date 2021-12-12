@@ -1,6 +1,9 @@
 import React from "react";
 import Head from "next/head";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -16,6 +19,13 @@ const Layout = ({ children, title = "Best Holiday Hotels" }) => {
         />
       </Head>
       <Header />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+      />
       {children}
       <Footer />
     </div>

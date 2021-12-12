@@ -1,9 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { clearErrors } from "../redux/actions/roomActions";
+
 import RoomItem from "./room/RoomItem";
 
 const Home = () => {
-  const { rooms } = useSelector((state) => state.allRooms);
+  const { rooms, error } = useSelector((state) => state.allRooms);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearErrors());
+    }
+  });
 
   return (
     <section id="rooms" className="container mt-5">

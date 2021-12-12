@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 
-import { allRoomsReducer } from "./roomReducer";
+import { allRoomsReducer, RoomDetailsReducer } from "./roomReducer";
 
 const mainReducer = combineReducers({
-  allRooms: allRoomsReducer
+  allRooms: allRoomsReducer,
+  RoomDetails: RoomDetailsReducer
 });
 
 export default mainReducer;
