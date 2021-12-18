@@ -25,7 +25,7 @@ const allRooms = catchAsyncErrors(async (req, res) => {
     roomsCount,
     resPerPage,
     filteredRoomsCount,
-    rooms
+    rooms,
   });
 });
 
@@ -35,7 +35,7 @@ const newRoom = catchAsyncErrors(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    room
+    room,
   });
 });
 
@@ -47,7 +47,7 @@ const getSingleRoom = catchAsyncErrors(async (req, res, next) => {
   }
   res.status(200).json({
     success: true,
-    room
+    room,
   });
 });
 
@@ -61,12 +61,12 @@ const updateRoom = catchAsyncErrors(async (req, res) => {
   room = await Room.findByIdAndUpdate(req.query.id, req.body, {
     new: true,
     runValidators: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   });
 
   res.status(200).json({
     success: true,
-    room
+    room,
   });
 });
 
@@ -81,7 +81,7 @@ const deleteRoom = catchAsyncErrors(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "the room has been deleted"
+    message: "the room has been deleted",
   });
 });
 

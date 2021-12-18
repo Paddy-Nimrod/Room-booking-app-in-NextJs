@@ -6,25 +6,29 @@ import {
   ALL_ROOMS_FAIL,
   ROOM_DETAILS_SUCCESS,
   ROOM_DETAILS_FAIL,
-  CLEAR_ERROR
+  CLEAR_ERROR,
 } from "../constants/roomConstants";
 
 //Get all rooms
-export const getRooms = (req) => async (dispatch) => {
-  try {
-    const { origin } = absoluteUrl(req);
-    const { data } = await axios.get(`${origin}/api/rooms`);
-    dispatch({
-      type: ALL_ROOMS_SUCCESS,
-      payload: data
-    });
-  } catch (error) {
-    dispatch({
-      type: ALL_ROOMS_FAIL,
-      payload: error.message
-    });
-  }
-};
+export const getRooms =
+  (req, currentPage = 1, location = "") =>
+  async (dispatch) => {
+    try {
+      const { origin } = absoluteUrl(req);
+      const { data } = await axios.get(
+        `${origin}/api/rooms?page=${currentPage}&location=${location}`
+      );
+      dispatch({
+        type: ALL_ROOMS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_ROOMS_FAIL,
+        payload: error.message,
+      });
+    }
+  };
 
 //Get room details
 export const getRoomDetails = (req, id) => async (dispatch) => {
@@ -33,12 +37,12 @@ export const getRoomDetails = (req, id) => async (dispatch) => {
     const { data } = await axios.get(`${origin}/api/rooms/${id}`);
     dispatch({
       type: ROOM_DETAILS_SUCCESS,
-      payload: data.room
+      payload: data.room,
     });
   } catch (error) {
     dispatch({
       type: ROOM_DETAILS_FAIL,
-      payload: error.message
+      payload: error.message,
     });
   }
 };
@@ -46,6 +50,6 @@ export const getRoomDetails = (req, id) => async (dispatch) => {
 //clear errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({
-    type: CLEAR_ERROR
+    type: CLEAR_ERROR,
   });
 };
